@@ -1,0 +1,3 @@
+.users-panel__container::-webkit-scrollbar{
+    display: none;
+}
