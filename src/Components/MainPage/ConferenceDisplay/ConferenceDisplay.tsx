@@ -1,8 +1,6 @@
 import React from "react";
-import { Box, Center, GridItem, Image, Square } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import { IUser } from "../../../App";
-import { getInitials } from "../UsersPanel/UsersPanel";
 
 interface IDisplayProps {
   user: IUser | null;

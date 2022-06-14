@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import { IUser } from "../../App";
 import "./MainPage.css";
-import {
-  Box,
-  Center,
-  Grid,
-  GridItem,
-  useMediaQuery,
-  Text,
-} from "@chakra-ui/react";
+import { Grid, GridItem, useMediaQuery } from "@chakra-ui/react";
 import ControlPanel from "../ControlPanel/ControlPanel";
-import ConferenceDisplay from "./ConferenceDisplay/ConferenceDisplay";
-import UsersPanel from "./UsersPanel/UsersPanel";
 import Chat from "../Chat/Chat";
 import FirstView from "./Views/FirstView";
 import SecondView from "./Views/SecondView";
@@ -33,17 +24,12 @@ const MainPage: React.FC<IMainPageProps> = ({
   setActiveUser,
   activeUser,
 }): JSX.Element => {
-  const [isPhoneScreen] = useMediaQuery(
-    "(min-device-width : 320px) and (max-device-width : 480px"
-  );
-
   const [viewType, setViewType] = useState(1);
 
   const changeViewTypeHandler = () => {
     if (viewType === 1) {
       setViewType(2);
     } else if (viewType === 2) {
-      setActiveUser(mainUser);
       setViewType(3);
     } else if (viewType === 3) {
       setViewType(1);
@@ -64,7 +50,7 @@ const MainPage: React.FC<IMainPageProps> = ({
       case 2:
         return <SecondView activeUser={activeUser} users={users} />;
       case 3:
-        return <SecondView activeUser={activeUser} users={users} />;
+        return <SecondView activeUser={mainUser} users={users} />;
     }
   };
 

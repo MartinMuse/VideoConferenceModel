@@ -22,7 +22,7 @@ function ControlPanel(props: any) {
   const videoClickHandler = () => {
     setIsVideoOn(!isVideoOn);
   };
-  const layoutClickHandler = () => {};
+
   return (
     <HStack bg={"white"} justify={"center"} p={3} spacing={3}>
       {isSoundOn ? (

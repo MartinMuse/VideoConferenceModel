@@ -1,6 +1,5 @@
 import React from "react";
 import { Center, Grid, GridItem, Text } from "@chakra-ui/react";
-import UsersPanel from "../UsersPanel/UsersPanel";
 import ConferenceDisplay from "../ConferenceDisplay/ConferenceDisplay";
 import { IUser } from "../../../App";
 

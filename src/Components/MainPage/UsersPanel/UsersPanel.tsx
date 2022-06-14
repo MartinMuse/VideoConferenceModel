@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Flex, Text, HStack, Center } from "@chakra-ui/react";
+import React, { useMemo } from "react";
+import { Box, Flex, Text, HStack, Center, AspectRatio } from "@chakra-ui/react";
 import UserItem from "../User/UserItem";
-import { IUser } from "../../../App";
+import { getInitials, IUser } from "../../../App";
 
 interface IUsersPanelProps {
   users: Array<any>;
@@ -10,21 +10,15 @@ interface IUsersPanelProps {
   setActiveUser: (user: IUser) => void;
 }
 
-export const getInitials = (name: string) => {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("");
-};
-
 function UsersPanel(props: IUsersPanelProps) {
   const { users, setActiveUser, activeUser, mainUser } = props;
 
-  return (
-    <HStack w={"100%"} h={"100%"} gap={2} className={"users--container"}>
-      {users.map((u) => {
+  const usersItems = useMemo(
+    () =>
+      users.map((u) => {
         return (
           <Flex
+            key={`user_${u.id}`}
             direction={"column"}
             position={"relative"}
             className={"users--container__item"}
@@ -35,7 +29,17 @@ function UsersPanel(props: IUsersPanelProps) {
             border={`${u.id === activeUser.id ? "solid 2px" : "none"}`}
           >
             <Center height={"100%"}>
-              <Text>{getInitials(u.name)}</Text>
+              {u.src ? (
+                <AspectRatio maxW="560px" ratio={1}>
+                  <iframe
+                    title="naruto"
+                    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+                    allowFullScreen
+                  />
+                </AspectRatio>
+              ) : (
+                <Text>{getInitials(u.name)}</Text>
+              )}
             </Center>
             {u.id === mainUser.id && (
               <Center
@@ -52,7 +56,13 @@ function UsersPanel(props: IUsersPanelProps) {
             )}
           </Flex>
         );
-      })}
+      }),
+    [users]
+  );
+
+  return (
+    <HStack w={"100%"} h={"100%"} gap={2} className={"users--container"}>
+      {usersItems}
     </HStack>
   );
 }
