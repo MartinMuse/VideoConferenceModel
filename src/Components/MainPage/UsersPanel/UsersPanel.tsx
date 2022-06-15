@@ -29,17 +29,7 @@ function UsersPanel(props: IUsersPanelProps) {
             border={`${u.id === activeUser.id ? "solid 2px" : "none"}`}
           >
             <Center height={"100%"}>
-              {u.src ? (
-                <AspectRatio maxW="560px" ratio={1}>
-                  <iframe
-                    title="naruto"
-                    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
-                    allowFullScreen
-                  />
-                </AspectRatio>
-              ) : (
-                <Text>{getInitials(u.name)}</Text>
-              )}
+              <Text>{getInitials(u.name)}</Text>
             </Center>
             {u.id === mainUser.id && (
               <Center
@@ -57,7 +47,7 @@ function UsersPanel(props: IUsersPanelProps) {
           </Flex>
         );
       }),
-    [users]
+    [users, activeUser]
   );
 
   return (
